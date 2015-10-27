@@ -16,7 +16,7 @@ module.exports = function(grunt) {
   grunt.registerTask('serve', ['build', 'lint', 'connect:livereload', 'webdriver', 'watch']);
   grunt.registerTask('test', ['build', 'lint', 'connect:test', 'webdriver']);
 
-  var port = 9000;
+  var port = 5000;
   var jsFiles = ['Gruntfile.js', 'js/*.js', 'features/*.js'];
   var htmlFiles = ['*.html'];
   var cssFiles = ['css/*.css'];

@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '4.1'
+- '0.11'
+before_install: npm install -g grunt-cli bower selenium-standalone
+install:
+  - npm install
+  - bower install
+  - selenium-standalone install
+before_script: selenium-standalone start > /dev/null 2>&1 &
+script:
+  - grunt test

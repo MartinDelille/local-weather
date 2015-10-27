@@ -10,9 +10,27 @@ html
     link(rel='stylesheet', href='bower_components/bootstrap/dist/css/bootstrap.css')
     link(rel='stylesheet', href='css/app.css')
   body
-    .container
-      h1.text-center Local Weather
-      p What's up?
+    .container.text-center
+      .jumbotron
+        h1 Annecy
+        .lead 21 ° C
+        .lead.text-muted Sunny
+      .row
+        .col-md-4
+          .jumbotron
+            h3 Wednesday
+            .lead 21 ° C
+            .lead.text-muted Sunny
+        .col-md-4
+          .jumbotron
+            h3 Thurday
+            .lead 21 ° C
+            .lead.text-muted Cloudy
+        .col-md-4
+          .jumbotron
+            h3 Friday
+            .lead 21 ° C
+            .lead.text-muted Rainy
     // bower:js
     script(src='bower_components/jquery/dist/jquery.js')
     script(src='bower_components/bootstrap/dist/js/bootstrap.js')

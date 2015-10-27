@@ -16,8 +16,8 @@ module.exports = function() {
   this.Then(/^the title is "([^"]*)"$/, function (expectedTitle, next) {
     browser
       .getTitle().then(function(title) {
-        assert(title === expectedTitle);
-        next();
-      }, next);
+        assert.equal(title, expectedTitle);
+      }, next)
+      .call(next);
   });
 };

@@ -11,25 +11,25 @@ html
     link(rel='stylesheet', href='css/app.css')
   body
     .container.text-center
-      .jumbotron
+      #today.jumbotron
         h1#city
-        .lead 21 ° C
-        .lead.text-muted Sunny
-      .row
+        .temperature.lead
+        .weather.lead.text-muted
+      #week.row
         .col-md-4
           .jumbotron
             h3 Wednesday
-            .lead 21 ° C
+            .temperature.lead 21 ° C
             .lead.text-muted Sunny
         .col-md-4
           .jumbotron
             h3 Thurday
-            .lead 21 ° C
+            .temperature.lead 21 ° C
             .lead.text-muted Cloudy
         .col-md-4
           .jumbotron
             h3 Friday
-            .lead 21 ° C
+            .temperature.lead 21 ° C
             .lead.text-muted Rainy
     // bower:js
     script(src='bower_components/jquery/dist/jquery.js')

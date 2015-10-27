@@ -1,7 +1,9 @@
 module.exports = function(grunt) {
+  var pkg = grunt.file.readJSON('package.json');
 
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-htmlhint');
@@ -11,12 +13,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-webdriver');
 
-  grunt.registerTask('build', ['wiredep', 'jade']);
+  grunt.registerTask('prepare', ['wiredep', 'jade']);
   grunt.registerTask('lint', ['jshint', 'htmlhint', 'htmllint', 'csslint', 'bootlint']);
-  grunt.registerTask('serve', ['build', 'lint', 'connect:livereload', 'webdriver', 'watch']);
-  grunt.registerTask('test', ['build', 'lint', 'connect:test', 'webdriver']);
+  grunt.registerTask('serve', ['prepare', 'lint', 'connect:livereload', 'webdriver', 'watch']);
+  grunt.registerTask('test', ['prepare', 'lint', 'connect:test', 'webdriver']);
+  grunt.registerTask('build', ['test', 'copy']);
 
-  var port = 5000;
+  var port = pkg.connectPort || 9000;
   var jsFiles = ['Gruntfile.js', 'js/*.js', 'features/*.js'];
   var htmlFiles = ['*.html'];
   var cssFiles = ['css/*.css'];
@@ -33,6 +36,13 @@ module.exports = function(grunt) {
       test: {
         options: {
           port: port
+        }
+      },
+      dist: {
+        options: {
+          base: 'dist',
+          port: port,
+          open: true
         }
       }
     },
@@ -115,6 +125,23 @@ module.exports = function(grunt) {
     webdriver: {
       test: {
         configFile: './wdio.conf.js'
+      }
+    },
+
+    copy: {
+      all: {
+        files: [{
+          cwd: '.',
+          dest: 'dist/',
+          src: [
+            'index.html',
+            'js/*.js',
+            'css/*.css',
+            'bower_components/jquery/dist/jquery.js',
+            'bower_components/bootstrap/dist/css/bootstrap.css',
+            'bower_components/bootstrap/dist/js/bootstrap.js'
+            ]
+        }]
       }
     }
   });

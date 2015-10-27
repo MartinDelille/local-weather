@@ -21,11 +21,14 @@ $(function() {
     $('#city').text(data.city);
 
     var token = 'eb2d3efe1c95bd690a3e7339b42e387c';
-    var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + data.city + ',' + data.country + '&appid=' + token;
+    var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + data.city + ',' + data.country + '&appid=' + token;
     $.getJSON(url, function(data) {
-      console.log(data);
-      $('#today .temperature').text(celciusFromKelvin(data.main.temp));
-      $('#today .weather').text(data.weather[0].main);
+      $('#today .temperature').text(celciusFromKelvin(data.list[0].main.temp));
+      $('#today     .weather').text(data.list[0].weather[0].main);
+      for(var i = 1; i < 4; i++) {
+        $('#week .col-md-4:nth-child(' + i + ') .temperature').text(celciusFromKelvin(data.list[4 * i].main.temp));
+        $('#week .col-md-4:nth-child(' + i + ') .weather').text(data.list[4 * i].weather[0].main);
+      }
     });
   });
 });

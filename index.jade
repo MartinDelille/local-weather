@@ -12,25 +12,16 @@ html
   body
     .container.text-center
       #today.jumbotron
-        h1#city
-        .temperature.lead
-        .weather.lead.text-muted
+        h1#city &nbsp;
+        .temperature.lead &nbsp;
+        .weather.lead.text-muted &nbsp;
       #week.row
-        .col-md-4
-          .jumbotron
-            h3
-            .temperature.lead 21 ° C
-            .lead.text-muted Sunny
-        .col-md-4
-          .jumbotron
-            h3
-            .temperature.lead 21 ° C
-            .lead.text-muted Cloudy
-        .col-md-4
-          .jumbotron
-            h3
-            .temperature.lead 21 ° C
-            .lead.text-muted Rainy
+        - for(var i = 0; i < 3; i++)
+          .col-md-4
+            .jumbotron
+              h3 &nbsp;
+              .temperature.lead &nbsp;
+              .weather.lead.text-muted &nbsp;
     // bower:js
     script(src='bower_components/jquery/dist/jquery.js')
     script(src='bower_components/bootstrap/dist/js/bootstrap.js')
